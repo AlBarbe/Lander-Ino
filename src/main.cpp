@@ -39,7 +39,7 @@ uint32_t color = 0xfba0;            // color of graphic and lines on DIsplay
 const int Period1 = 5000;           // Setting refresh sensor rate
 unsigned long StartMillis1 = 0;     
 const int Period2 = 1800000;        // Weather refresh rate [30m] 
-unsigned long StartMillis2 = -1800000;   //seting negative to refresh when first booted
+long int StartMillis2 = 0;
 
 
 void setup() {
@@ -96,7 +96,7 @@ void loop() {
   }
   
   //-------------------------- Weather update --------------------------------
-  if (millis () - StartMillis2 > Period2) {
+if (millis () - StartMillis2 > Period2 || StartMillis2 == 0) {
     Serial.print("Weather update:");
     orologio.WriteTime();
 
